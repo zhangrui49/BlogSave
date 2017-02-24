@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>张瑞的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="张瑞的博客">
+<meta property="og:url" content="https://github.com/zhangrui49/index.html">
+<meta property="og:site_name" content="张瑞的博客">
+<meta property="og:description" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="张瑞的博客">
+<meta name="twitter:description" content="blog">
+  
+    <link rel="alternate" href="/atom.xml" title="张瑞的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张瑞的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">没事的时候瞎写写</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/zhangrui49"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Template" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/24/Template/" class="article-date">
+  <time datetime="2017-02-24T02:42:10.277Z" itemprop="datePublished">2017-02-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/24/Template/">Singleton Template</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Android-Studio-Singleton-Template"><a href="#Android-Studio-Singleton-Template" class="headerlink" title="Android Studio Singleton Template"></a>Android Studio Singleton Template</h2><hr>
+<p>2017/2/24 11:07:54 </p>
+<hr>
+<p>首先创建单例模式有很多种（自己去看哪几种啊–），这里主要讲的是带有volatile关键字的DCL写法,</p>
+<p>假如我们要写一个HttpClient单例，那么写法如下：</p>
+<pre><code>`public class HttpClient {
+ private volatile static HttpClient instance;
+ public static HttpClient getInstance() {
+    if (instance == null) {
+        synchronized (HttpClient.class) {
+            if (instance == null) {
+                instance = new HttpClient();
+            }
+        }
+    }
+    return instance;
+ }`
+</code></pre><p>其实android 开发者应该都知道Android Studio 的Template，既然单例写法相对固定，我们不妨也创建一个Template</p>
+<p>首先，打开AS的Setting–&gt;Editor–&gt;File And Code Templates，在Files里，</p>
+<p>新建一个名为“VolatileSingleton”的文件，extension填“java”</p>
+<p>然后输入：<br>`    </p>
+<pre><code>public class ${NAME}{
+private volatile static ${NAME} sInstance;
+
+public static ${NAME} getInstance() {
+    if(sInstance==null){
+        synchronized(${NAME}.class){
+            if(sInstance==null){
+                sInstance=new ${NAME}();
+            }
+        }
+    },
+    return sInstance;
+}
+
+private ${NAME}() {
+    }
+}
+</code></pre><p>`</p>
+<p>如图：<br><img src="http://olv77flfq.bkt.clouddn.com/template.png" alt=""></p>
+<p>然后，在想要建立单例的文件夹上，</p>
+<p>new–&gt;VolatileSingleton,输入类名（如：”HttpClient”）,则大功告成！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/zhangrui49/2017/02/24/Template/" data-id="cizjhlglk0000zcqqs019tlgz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/24/Template/">Singleton Template</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 张瑞<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
