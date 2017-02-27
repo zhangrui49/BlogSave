@@ -8,7 +8,7 @@ title: Singleton Template
 
 ---
 
-首先创建单例模式有很多种（自己去看哪几种啊--），这里主要讲的是带有volatile关键字的DCL写法,
+首先创建单例模式有很多种，这里主要说的是带有volatile关键字的DCL写法,
 
 假如我们要写一个HttpClient单例，那么写法如下：
     
